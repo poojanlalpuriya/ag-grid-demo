@@ -1,0 +1,32 @@
+<select class="form-control" (change)="ddValueChange($event)" id="headerValue">
+  <option *ngFor="let method of columnDefs" [value]="method.field">
+    {{ method.field }}
+  </option>
+</select>
+
+<select *ngIf="searchType === 'number'" class="form-control">
+  <option *ngFor="let methods of graterless" [value]="methods.field">
+    {{ methods.field }}
+  </option>
+</select>
+
+<label>
+  <input type="text" (input)="externalFilterChanged($event)" id="BlablaBla" />
+  <!-- <input type="text" (change)="blabla()" id="BlablaBla" /> -->
+</label>
+
+<ag-grid-angular
+  style="width: 500px; height: 200px"
+  class="ag-theme-alpine"
+  [defaultColDef]="defaultColDef"
+  [rowData]="rowData"
+  [columnDefs]="columnDefs"
+  [pagination]="true"
+  [paginationPageSize]="10"
+  [paginationAutoPageSize]="false"
+  [isExternalFilterPresent]="isExternalFilterPresent"
+  [doesExternalFilterPass]="doesExternalFilterPass"
+  [cacheQuickFilter]="true"
+  (gridReady)="onGridReady($event)"
+>
+</ag-grid-angular>
